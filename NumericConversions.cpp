@@ -3,15 +3,23 @@
  * ---------------------------
  * Name: Eric Beach
  * Section: [TODO: enter section leader here]
+ * Copyright 2013 <Eric Beach>
  * This file is the starter project for the Numeric Conversions problem.
  * [TODO: rewrite the documentation]
+ *
+ * This file lightly linted using:
+ * http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py
  */
 
-#include <iostream>
-#include <string>
 #include <math.h>
 #include "console.h"
+#include <iostream>
+#include <string>
+
 using namespace std;
+
+// TODO: Test a lot of different cases (e.g., decimals, -, +, spaces)
+// TODO: validate input of string
 
 /* Function prototypes */
 
@@ -20,6 +28,9 @@ int stringToInt(string str);
 
 /* Main program */
 
+/*
+ * Helper function to perform unit tests.
+ */
 bool assertEquals(string expected, string received) {
     if (expected == received) {
         return true;
@@ -30,6 +41,9 @@ bool assertEquals(string expected, string received) {
     }
 }
 
+/*
+ * Helper function to perform unit tests.
+ */
 bool assertEquals(int expected, int received) {
     if (expected == received) {
         return true;
@@ -40,16 +54,26 @@ bool assertEquals(int expected, int received) {
     }
 }
 
+/*
+ * Convert a digit to a string.
+ */
 string digitToString(int n) {
     return string() + char(n % 10 + '0');
 }
 
+/*
+ * Convert a digit to an integer.
+ */
 int digitToInt(string num) {
     char temp = *(num.substr(0, 1).c_str());
     int digit = temp - 48;
     return digit;
 }
 
+/*
+ * Perform unit tests on the major functions that convert integers to
+ *  strings and reverse.
+ */
 void runUnitTests() {
     assertEquals("0", digitToString(0));
     assertEquals("1", digitToString(1));
@@ -76,6 +100,9 @@ int main() {
     return 0;
 }
 
+/*
+ * Convert a string to an integer using recursion.
+ */
 int stringToInt(string num) {
     if (num.length() == 1) {
         // base case
@@ -86,12 +113,16 @@ int stringToInt(string num) {
     } else {
         // recursive case
         int power = num.size() - 1;
-        int leftDigitContribution = digitToInt(num.substr(0, 1)) * pow(10, power);
+        int leftDigitContribution =
+          digitToInt(num.substr(0, 1)) * pow(10, power);
         string remaining = num.substr(1);
         return  leftDigitContribution + stringToInt(remaining);
     }
 }
 
+/*
+ * Convert an integer into a string (e.g., -123 becomes "-123").
+ */
 string intToString(int n) {
     if (n == 0) {
         return string("0");
