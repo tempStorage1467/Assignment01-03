@@ -95,6 +95,9 @@ void runUnitTests() {
     assertEquals(999, stringToInt("999"));
 }
 
+/*
+ * Run unit tests to validate two required functions.
+ */
 int main() {
     runUnitTests();
     return 0;
