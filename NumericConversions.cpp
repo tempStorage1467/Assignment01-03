@@ -2,10 +2,10 @@
  * File: NumericConversions.cpp
  * ---------------------------
  * Name: Eric Beach
- * Section: [TODO: enter section leader here]
- * Copyright 2013 <Eric Beach>
- * This file is the starter project for the Numeric Conversions problem.
- * [TODO: rewrite the documentation]
+ * Section: SCPD, Aaron Broder <abroder@stanford.edu>
+ * Copyright 2013 Eric Beach <ebeach@google.com>
+ * Assignment 1 - Pt. 3 - NumericConversions
+ * This file is the solution for the Numeric Conversions problem.
  *
  * This file lightly linted using:
  * http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py
@@ -18,9 +18,6 @@
 
 using namespace std;
 
-// TODO: Test a lot of different cases (e.g., decimals, -, +, spaces)
-// TODO: validate input of string
-
 /* Function prototypes */
 
 string intToString(int n);
@@ -31,7 +28,7 @@ int stringToInt(string str);
 /*
  * Helper function to perform unit tests.
  */
-bool assertEquals(string expected, string received) {
+bool assertEquals(const string& expected, const string& received) {
     if (expected == received) {
         return true;
     } else {
@@ -44,7 +41,7 @@ bool assertEquals(string expected, string received) {
 /*
  * Helper function to perform unit tests.
  */
-bool assertEquals(int expected, int received) {
+bool assertEquals(const int& expected, const int& received) {
     if (expected == received) {
         return true;
     } else {
@@ -57,14 +54,14 @@ bool assertEquals(int expected, int received) {
 /*
  * Convert a digit to a string.
  */
-string digitToString(int n) {
+string digitToString(const int& n) {
     return string() + char(n % 10 + '0');
 }
 
 /*
  * Convert a digit to an integer.
  */
-int digitToInt(string num) {
+int digitToInt(const string& num) {
     char temp = *(num.substr(0, 1).c_str());
     int digit = temp - 48;
     return digit;
@@ -78,6 +75,7 @@ void runUnitTests() {
     assertEquals("0", digitToString(0));
     assertEquals("1", digitToString(1));
     assertEquals("7", digitToString(7));
+    assertEquals("9", digitToString(9));
     assertEquals("23", intToString(23));
     assertEquals("-23", intToString(-23));
     assertEquals("-27", intToString(-27));
@@ -93,6 +91,7 @@ void runUnitTests() {
     assertEquals(-9, stringToInt("-9"));
     assertEquals(99, stringToInt("99"));
     assertEquals(999, stringToInt("999"));
+    assertEquals(-999, stringToInt("-999"));
 }
 
 /*
